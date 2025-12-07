@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List - Мои заметки</title>
+    <title>ToDo List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Мои заметки</h1>
-        </header>
-
-        <div class="input-section">
-            <input type="text" id="taskInput" placeholder="Введите новую задачу..." maxlength="100">
-            <button id="addButton">Добавить</button>
+        <div class="todo-app">
+            <h2>To-Do List</h2>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your task...">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <div class="category-selector">
+                <label for="category">Select category:</label>
+                <select id="category">
+                    <option value="left">Study</option>
+                    <option value="center">Sport</option>
+                    <option value="right">Home</option>
+                </select>
+            </div>
         </div>
 
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">Все</button>
-            <button class="filter-btn" data-filter="active">Активные</button>
-            <button class="filter-btn" data-filter="completed">Выполненные</button>
+        <div class="tasks">
+            <div class="task-column" id="left">
+                <h3>Study</h3>
+                <ul id="list-left" class="list-container" data-category="left">
+
+                </ul>
+            </div>
+
+            <div class="task-column" id="center">
+                <h3>Sport</h3>
+                <ul id="list-center" class="list-container" data-category="center">
+
+                </ul>
+            </div>
+
+            <div class="task-column" id="right">
+                <h3>Home</h3>
+                <ul id="list-right" class="list-container" data-category="right">
+
+                </ul>
+            </div>
         </div>
 
-        <div class="stats">
-            <span>Всего: <span id="totalCount">0</span></span>
-            <span>Выполнено: <span id="completedCount">0</span></span>
-            <span>Осталось: <span id="remainingCount">0</span></span>
-        </div>
-
-        <ul id="taskList" class="task-list"></ul>
-
-        <div class="actions">
-            <button id="clearCompleted" class="clear-btn">Очистить выполненные</button>
-            <button id="clearAll" class="clear-btn danger">Очистить все</button>
-        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
