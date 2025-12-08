@@ -3,10 +3,12 @@
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 body {
     background: linear-gradient(135deg, #0b0423, #1a0938);
     min-height: 100vh;
 }
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -16,6 +18,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .tasks {
     display: flex;
     flex-direction: row;
@@ -24,6 +27,7 @@ body {
     margin-top: 30px;
     gap: 20px;
 }
+
 .task-column {
     flex: 1;
     min-height: 500px;
@@ -32,6 +36,7 @@ body {
     padding: 20px;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
+
 .task-column h3 {
     color: #fff;
     margin-bottom: 20px;
@@ -41,6 +46,7 @@ body {
     gap: 10px;
     font-weight: 500;
 }
+
 .todo-app {
     width: 100%;
     max-width: 600px;
@@ -49,12 +55,14 @@ body {
     padding: 30px 25px;
     border-radius: 15px;
 }
+
 .todo-app h2 {
     color: #002765;
     gap: 10px;
     margin-bottom: 25px;
     font-weight: 600;
 }
+
 .row {
     display: flex;
     align-items: center;
@@ -64,6 +72,7 @@ body {
     padding-left: 20px;
     margin-bottom: 20px;
 }
+
 input {
     flex: 1;
     border: none;
@@ -72,6 +81,7 @@ input {
     padding: 12px 10px;
     font-size: 16px;
 }
+
 button {
     border: none;
     outline: none;
@@ -83,12 +93,14 @@ button {
     border-radius: 40px;
     font-weight: 600;
 }
+
 .category-selector {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-top: 15px;
 }
+
 .category-selector label {
     color: #002765;
     font-weight: 500;
@@ -103,6 +115,32 @@ button {
     outline: none;
     cursor: pointer;
 }
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #edeef0;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.filter-btn.active {
+    background: #ff5945;
+    color: white;
+}
+
+/* Стили для списка задач */
 .list-container {
     min-height: 400px;
     padding: 10px 0;
@@ -119,25 +157,15 @@ ul {
     border-radius: 10px;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
 }
+
+/* Отключаем старый чекбокс через ::before */
 .list-container li::before {
-    content: '';
-    position: absolute;
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 15px;
-    background-color: #f1f1f1;
-    border: 2px solid #ddd;
-}
-.list-container li.checked::before {
-    background-color: #ff5945;
-    border-color: #ff5945;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    display: none;
 }
 
 .list-container li.checked {
@@ -145,22 +173,90 @@ ul {
     text-decoration: line-through;
     opacity: 0.8;
 }
-.list-container li span {
+
+.list-container li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Стили для кастомного чекбокса */
+.custom-checkbox {
     position: absolute;
-    right: 10px;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-checkbox.checked {
+    background-color: #ff5945;
+    border-color: #ff5945;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Стили для текста задачи */
+.task-text {
+    margin-left: 40px;
+    margin-right: 40px;
+    cursor: pointer;
+    word-break: break-word;
+    flex-grow: 1;
+    padding: 5px 0;
+}
+
+/* Стили для кнопки удаления */
+.delete-btn {
+    position: absolute;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
     height: 30px;
-    font-size: 18px;
+    font-size: 22px;
     color: #ff5945;
     line-height: 30px;
     text-align: center;
     border-radius: 50%;
+    cursor: pointer;
     transition: all 0.2s;
-    }
+}
 
-.list-container li span:hover {
+.delete-btn:hover {
     background: #ffedea;
     color: #ff3d27;
+}
+
+/* Стили для поля редактирования */
+.task-edit-input {
+    width: calc(100% - 80px);
+    border: 2px solid #ff5945;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-family: inherit;
+}
+
+/* Стили для drag-and-drop */
+.list-container.drag-over {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 2px dashed #ff5945 !important;
+}
+
+.list-container li.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
 }
