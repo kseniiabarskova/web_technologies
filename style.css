@@ -140,7 +140,7 @@ button {
     color: white;
 }
 
-/* Стили для списка задач */
+
 .list-container {
     min-height: 400px;
     padding: 10px 0;
@@ -163,7 +163,7 @@ ul {
     transition: all 0.2s ease;
 }
 
-/* Отключаем старый чекбокс через ::before */
+
 .list-container li::before {
     display: none;
 }
@@ -175,12 +175,11 @@ ul {
 }
 
 .list-container li:hover {
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
 }
 
-/* Стили для кастомного чекбокса */
 .custom-checkbox {
     position: absolute;
     left: 15px;
@@ -205,7 +204,7 @@ ul {
     font-size: 14px;
 }
 
-/* Стили для текста задачи */
+
 .task-text {
     margin-left: 40px;
     margin-right: 40px;
@@ -215,7 +214,7 @@ ul {
     padding: 5px 0;
 }
 
-/* Стили для кнопки удаления */
+
 .delete-btn {
     position: absolute;
     right: 15px;
@@ -237,7 +236,7 @@ ul {
     color: #ff3d27;
 }
 
-/* Стили для поля редактирования */
+
 .task-edit-input {
     width: calc(100% - 80px);
     border: 2px solid #ff5945;
@@ -250,7 +249,7 @@ ul {
     font-family: inherit;
 }
 
-/* Стили для drag-and-drop */
+
 .list-container.drag-over {
     background-color: rgba(255, 255, 255, 0.1) !important;
     border: 2px dashed #ff5945 !important;

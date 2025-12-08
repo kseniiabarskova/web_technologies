@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
             currentFilter = this.dataset.filter;
             renderTasks();
+            
         });
     });
-
     inputBox.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             addTask();
@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateCounters(); 
             }
         });
+        
     });
 }
     
@@ -81,24 +82,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         inputBox.value = '';
         inputBox.focus();
+        
     }
     
     
-    function toggleTask(id) { //переключатель статуса задачи (выполнена/не выполнена).
+    function toggleTask(id) { 
         const taskIndex = tasks.findIndex(t => t.id === id);
         if (taskIndex !== -1) {
             tasks[taskIndex].completed = !tasks[taskIndex].completed;
             saveTasks();
             renderTasks();
             updateCounters();
+        
         }
     }
     
     function deleteTask(id) {
         tasks = tasks.filter(t => t.id !== id);
-        saveTasks(); //Сохраняет новый массив (без удалённой задачи) в localStorage
+        saveTasks(); 
         renderTasks();
         updateCounters();
+        
     }
 
     function editTask(id, newText) {
@@ -107,16 +111,18 @@ document.addEventListener('DOMContentLoaded', function() {
             tasks[taskIndex].text = newText.trim();
             saveTasks();
             renderTasks();
+            updateCounters();
         }
     }
     
     function saveTasks() {
         localStorage.setItem('todoTasks', JSON.stringify(tasks));
+        
     }
     
-    // Отображение задач с учетом фильтра
+
     function renderTasks() {
-    // Очищаем все списки
+    
     listContainers.forEach(container => {
         container.innerHTML = '';
     });
@@ -131,22 +137,22 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (currentFilter === 'completed') {
             categoryTasks = categoryTasks.filter(task => task.completed);
         }
-
         categoryTasks.forEach(task => {
             const li = createTaskElement(task);
             container.appendChild(li);
         });
+        
     });
 }
     
-    // Создание элемента задачи
+    
     function createTaskElement(task) {
     const li = document.createElement('li');
     li.className = task.completed ? 'task-item checked' : 'task-item';
     li.draggable = true;
     li.dataset.id = task.id;
     
-    // Чекбокс
+    
     const checkbox = document.createElement('div');
     checkbox.className = 'custom-checkbox';
     
@@ -173,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.value = currentText;
         input.className = 'task-edit-input';
         
-      
         this.parentNode.insertBefore(input, this);
         this.style.display = 'none';
         input.focus();
@@ -188,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
         
-        input.addEventListener('blur', saveEdit);
+        
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 saveEdit();
@@ -220,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     li.appendChild(deleteBtn);
     
     return li;
+
 }
 
     function updateCounters() {
@@ -244,6 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 columnHeader.innerHTML = `${name} <small style="font-size: 0.8em; color: #888;">(${columnActive}/${columnTasks.length})</small>`;
             }
         }
+        
         
     }
 });
